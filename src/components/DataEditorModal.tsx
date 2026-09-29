@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PortfolioData, initialPortfolioData } from '../data/portfolioData';
-import { X, Save, RotateCcw, Copy, Check, Download, AlertCircle } from 'lucide-react';
+import { X, Save, RotateCcw, Check, AlertCircle } from 'lucide-react';
 
 interface DataEditorModalProps {
   isOpen: boolean;
@@ -58,7 +58,7 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
     setTimeout(() => {
       setSavedSuccess(false);
       onClose();
-    }, 900);
+    }, 800);
   };
 
   const handleResetDefaults = () => {
@@ -71,26 +71,26 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex justify-center p-3 sm:p-6">
-      <div className="bg-white w-full max-w-3xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh]">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex justify-center p-3 sm:p-6">
+      <div className="bg-[#12141d] border border-neutral-800 text-neutral-200 w-full max-w-3xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh]">
         {/* Header */}
-        <div className="px-6 py-4 bg-neutral-900 text-white flex items-center justify-between">
+        <div className="px-6 py-4 bg-[#0a0b10] text-white flex items-center justify-between border-b border-neutral-800">
           <div>
-            <h2 className="text-base font-bold tracking-tight">Portfolio Resume Data Editor</h2>
+            <h2 className="text-base font-bold tracking-tight">Portfolio Data Editor</h2>
             <p className="text-xs text-neutral-400">
-              Customize or paste exact information from your resume
+              Update information or paste custom JSON
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center bg-neutral-800 rounded p-0.5 text-xs">
+            <div className="flex items-center bg-neutral-900 border border-neutral-800 rounded p-0.5 text-xs">
               <button
                 onClick={() => {
                   setActiveTab('visual');
                   setJsonText(JSON.stringify(formData, null, 2));
                 }}
                 className={`px-2.5 py-1 rounded transition-colors ${
-                  activeTab === 'visual' ? 'bg-white text-neutral-900 font-semibold' : 'text-neutral-300'
+                  activeTab === 'visual' ? 'bg-violet-600 text-white font-semibold' : 'text-neutral-400 hover:text-white'
                 }`}
               >
                 Form Fields
@@ -101,7 +101,7 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                   setJsonText(JSON.stringify(formData, null, 2));
                 }}
                 className={`px-2.5 py-1 rounded transition-colors ${
-                  activeTab === 'json' ? 'bg-white text-neutral-900 font-semibold' : 'text-neutral-300'
+                  activeTab === 'json' ? 'bg-violet-600 text-white font-semibold' : 'text-neutral-400 hover:text-white'
                 }`}
               >
                 Raw JSON
@@ -121,20 +121,20 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
         {/* Body */}
         <div className="p-6 overflow-y-auto space-y-6 text-sm flex-1">
           {savedSuccess && (
-            <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg flex items-center gap-2 text-xs font-semibold">
-              <Check className="w-4 h-4 text-emerald-600" />
+            <div className="p-3 bg-violet-950/60 border border-violet-700/50 text-violet-300 rounded-lg flex items-center gap-2 text-xs font-semibold">
+              <Check className="w-4 h-4 text-violet-400" />
               <span>Portfolio updated successfully!</span>
             </div>
           )}
 
           {activeTab === 'json' ? (
             <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs text-neutral-500">
-                <span>Paste or edit your complete portfolio JSON payload below:</span>
-                <span className="font-mono">portfolioData.json</span>
+              <div className="flex items-center justify-between text-xs text-neutral-400">
+                <span>Direct JSON data model:</span>
+                <span className="font-mono text-violet-400">portfolioData.json</span>
               </div>
               {jsonError && (
-                <div className="p-2.5 bg-red-50 border border-red-200 text-red-700 rounded text-xs flex items-center gap-2">
+                <div className="p-2.5 bg-red-950/50 border border-red-800/60 text-red-300 rounded text-xs flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{jsonError}</span>
                 </div>
@@ -143,17 +143,17 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                 value={jsonText}
                 onChange={handleJsonChange}
                 rows={18}
-                className="w-full font-mono text-xs p-3.5 bg-neutral-900 text-neutral-100 rounded-lg border border-neutral-700 focus:outline-none focus:ring-1 focus:ring-neutral-400"
+                className="w-full font-mono text-xs p-3.5 bg-[#0a0b10] text-neutral-200 rounded-lg border border-neutral-800 focus:outline-none focus:ring-1 focus:ring-violet-500"
               />
             </div>
           ) : (
             <div className="space-y-6">
               {/* Hero details */}
-              <div className="space-y-3 border-b border-neutral-200 pb-5">
-                <h3 className="font-bold text-neutral-900 text-sm">Hero & Contact Info</h3>
+              <div className="space-y-3 border-b border-neutral-800 pb-5">
+                <h3 className="font-bold text-white text-sm">Hero & Information</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">Full Name</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Full Name</label>
                     <input
                       type="text"
                       value={formData.hero.name}
@@ -163,12 +163,12 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                           hero: { ...formData.hero, name: e.target.value },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">Headline</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Headline</label>
                     <input
                       type="text"
                       value={formData.hero.headline}
@@ -178,12 +178,12 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                           hero: { ...formData.hero, headline: e.target.value },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">Email</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Email</label>
                     <input
                       type="email"
                       value={formData.hero.email}
@@ -193,12 +193,12 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                           hero: { ...formData.hero, email: e.target.value },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">Location</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Location</label>
                     <input
                       type="text"
                       value={formData.hero.location}
@@ -208,60 +208,15 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                           hero: { ...formData.hero, location: e.target.value },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">GitHub URL</label>
-                    <input
-                      type="text"
-                      value={formData.hero.github}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          hero: { ...formData.hero, github: e.target.value },
-                        })
-                      }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">LinkedIn URL</label>
-                    <input
-                      type="text"
-                      value={formData.hero.linkedin}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          hero: { ...formData.hero, linkedin: e.target.value },
-                        })
-                      }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-1">Kaggle URL</label>
-                    <input
-                      type="text"
-                      value={formData.hero.kaggle}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          hero: { ...formData.hero, kaggle: e.target.value },
-                        })
-                      }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-neutral-600 mb-1">Introduction</label>
+                  <label className="block text-xs font-medium text-neutral-400 mb-1">Introduction</label>
                   <textarea
-                    rows={3}
+                    rows={2}
                     value={formData.hero.introduction}
                     onChange={(e) =>
                       setFormData({
@@ -269,89 +224,53 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                         hero: { ...formData.hero, introduction: e.target.value },
                       })
                     }
-                    className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded focus:ring-1 focus:ring-neutral-900"
+                    className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                   />
                 </div>
               </div>
 
-              {/* Skills summary input */}
-              <div className="space-y-3 border-b border-neutral-200 pb-5">
-                <h3 className="font-bold text-neutral-900 text-sm">Key Skills (Comma-separated)</h3>
-                <div className="space-y-2.5">
+              {/* Skills breakdown */}
+              <div className="space-y-3 border-b border-neutral-800 pb-5">
+                <h3 className="font-bold text-white text-sm">Skills (Comma-separated)</h3>
+                <div className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-0.5">Languages</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Programming</label>
                     <input
                       type="text"
-                      value={formData.skills.languages.join(', ')}
+                      value={formData.skills.programming.join(', ')}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
                           skills: {
                             ...formData.skills,
-                            languages: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
+                            programming: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
                           },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-0.5">Frameworks</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Core Foundations</label>
                     <input
                       type="text"
-                      value={formData.skills.frameworks.join(', ')}
+                      value={formData.skills.core.join(', ')}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
                           skills: {
                             ...formData.skills,
-                            frameworks: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
+                            core: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
                           },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-0.5">AI / ML</label>
-                    <input
-                      type="text"
-                      value={formData.skills.aiMl.join(', ')}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          skills: {
-                            ...formData.skills,
-                            aiMl: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
-                          },
-                        })
-                      }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-0.5">Databases</label>
-                    <input
-                      type="text"
-                      value={formData.skills.databases.join(', ')}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          skills: {
-                            ...formData.skills,
-                            databases: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
-                          },
-                        })
-                      }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-neutral-600 mb-0.5">Tools</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Tools</label>
                     <input
                       type="text"
                       value={formData.skills.tools.join(', ')}
@@ -364,7 +283,25 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                           },
                         })
                       }
-                      className="w-full px-3 py-1.5 text-xs border border-neutral-300 rounded"
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-violet-300 mb-1">Currently Exploring</label>
+                    <input
+                      type="text"
+                      value={formData.skills.currentlyExploring.join(', ')}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          skills: {
+                            ...formData.skills,
+                            currentlyExploring: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
+                          },
+                        })
+                      }
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-violet-800/60 text-violet-300 rounded focus:border-violet-500"
                     />
                   </div>
                 </div>
@@ -374,10 +311,10 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3.5 bg-neutral-100 border-t border-neutral-200 flex items-center justify-between">
+        <div className="px-6 py-3.5 bg-[#0a0b10] border-t border-neutral-800 flex items-center justify-between">
           <button
             onClick={handleResetDefaults}
-            className="flex items-center gap-1.5 text-xs font-medium text-neutral-600 hover:text-red-700 transition-colors"
+            className="flex items-center gap-1.5 text-xs font-medium text-neutral-400 hover:text-red-400 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset to Original</span>
@@ -386,13 +323,13 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-3 py-1.5 text-xs font-medium text-neutral-700 bg-white border border-neutral-300 rounded hover:bg-neutral-50 transition-colors"
+              className="px-3 py-1.5 text-xs font-medium text-neutral-300 bg-neutral-900 border border-neutral-800 rounded hover:bg-neutral-800 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={activeTab === 'json' ? handleJsonSave : handleVisualSave}
-              className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-neutral-900 hover:bg-neutral-800 rounded transition-colors"
+              className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 rounded transition-colors"
             >
               <Save className="w-3.5 h-3.5" />
               <span>Apply Changes</span>

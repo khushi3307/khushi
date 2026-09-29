@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { initialPortfolioData, PortfolioData } from './data/portfolioData';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -19,7 +19,7 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { DataEditorModal } from './components/DataEditorModal';
 
-const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v1';
+const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v2';
 
 export default function App() {
   const [data, setData] = useState<PortfolioData>(() => {
@@ -47,7 +47,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
+    <div className="min-h-screen bg-[#0c0d12] text-neutral-100 flex flex-col font-sans selection:bg-violet-600 selection:text-white antialiased">
       {/* 3-Zone Top Navigation */}
       <Navbar
         data={data}
@@ -68,17 +68,17 @@ export default function App() {
           name={data.hero.name}
         />
 
-        {/* Section 3: Skills */}
+        {/* Section 3: Skills with distinct Currently Exploring section */}
         <Skills
           skills={data.skills}
         />
 
-        {/* Section 4: Projects */}
+        {/* Section 4: Projects & Honest Placeholders */}
         <Projects
           projects={data.projects}
         />
 
-        {/* Section 5: Experience */}
+        {/* Section 5: Extracurricular Activities & Experience */}
         <Experience
           experiences={data.experience}
         />
@@ -88,12 +88,12 @@ export default function App() {
           education={data.education}
         />
 
-        {/* Section 7: Certifications */}
+        {/* Section 7: Learning & Certifications */}
         <Certifications
           certifications={data.certifications}
         />
 
-        {/* Section 8: Achievements / Activities */}
+        {/* Section 8: Achievements & Activities */}
         <Achievements
           achievements={data.achievements}
         />

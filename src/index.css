@@ -3,6 +3,8 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0c0d12;
+    color: #e2e8f0;
   }
 
   h1, h2, h3, .font-display {
@@ -15,3 +17,13 @@
   }
 }
 
+/* Subtle transitions for cards and interactive elements */
+.transition-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transition-card:hover {
+  transform: translateY(-2px);
+}

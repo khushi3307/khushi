@@ -1,6 +1,6 @@
 import React from 'react';
 import { PortfolioData } from '../data/portfolioData';
-import { X, Printer, Download, ExternalLink, Mail, MapPin, Globe } from 'lucide-react';
+import { X, Printer, Download } from 'lucide-react';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -21,29 +21,25 @@ ${data.hero.headline}
 Email: ${data.hero.email} | Location: ${data.hero.location}
 GitHub: ${data.hero.github} | LinkedIn: ${data.hero.linkedin} | Kaggle: ${data.hero.kaggle}
 
-## About Me
+## About
 ${data.about.summary.join('\n\n')}
 
 ## Education
-${data.education.map(e => `* **${e.degree}** - ${e.institution} (${e.duration}) - ${e.score || ''}\n  Coursework: ${e.coursework?.join(', ')}`).join('\n')}
+${data.education.map(e => `* **${e.degree}** - ${e.institution} (${e.duration})${e.score ? ` - ${e.score}` : ''}\n  Key Focus: ${e.coursework?.join(', ') || 'N/A'}`).join('\n')}
 
-## Technical Skills
-* **Languages:** ${data.skills.languages.join(', ')}
-* **Frameworks & Web:** ${data.skills.frameworks.join(', ')}
-* **AI & Machine Learning:** ${data.skills.aiMl.join(', ')}
-* **Databases:** ${data.skills.databases.join(', ')}
-* **Tools & Platforms:** ${data.skills.tools.join(', ')}
+## Technical Foundations & Skills
+* **Programming:** ${data.skills.programming.join(', ')}
+* **Core Foundations:** ${data.skills.core.join(', ')}
+* **Tools:** ${data.skills.tools.join(', ')}
+* **Currently Exploring:** ${data.skills.currentlyExploring.join(', ')}
 
-## Projects
-${data.projects.map(p => `### ${p.name}\n${p.purpose}\n* Tech: ${p.technologies.join(', ')}\n* Features:\n${p.features.map(f => `  - ${f}`).join('\n')}\n* Link: ${p.githubUrl || ''}`).join('\n\n')}
+## Projects & Academic Work
+${data.projects.map(p => `### ${p.name}\n${p.purpose}\n* Tech: ${p.technologies.join(', ')}\n* Key Points:\n${p.features.map(f => `  - ${f}`).join('\n')}\n* Link: ${p.githubUrl || 'In Progress'}`).join('\n\n')}
 
-## Experience
+## Activities & Experience
 ${data.experience.map(e => `### ${e.role} - ${e.organization} (${e.duration})\n${e.responsibilities.map(r => `* ${r}`).join('\n')}`).join('\n\n')}
 
-## Certifications
-${data.certifications.map(c => `* **${c.name}** - ${c.issuer} (${c.date})`).join('\n')}
-
-## Achievements
+## Activities & Presentations
 ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''})`).join('\n')}
 `;
 
@@ -59,19 +55,19 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex justify-center p-3 sm:p-6 print:p-0 print:bg-white">
-      <div className="bg-white w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh] print:max-h-none print:shadow-none print:rounded-none">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs flex justify-center p-3 sm:p-6 print:p-0 print:bg-white">
+      <div className="bg-white text-neutral-900 w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh] print:max-h-none print:shadow-none print:rounded-none">
         {/* Modal Header Toolbar (hidden on print) */}
-        <div className="px-6 py-4 bg-neutral-900 text-white flex items-center justify-between print:hidden">
+        <div className="px-6 py-4 bg-[#0e1017] text-white flex items-center justify-between print:hidden border-b border-neutral-800">
           <div className="flex items-center gap-2">
             <span className="text-sm font-bold tracking-tight">Curriculum Vitae</span>
-            <span className="text-xs text-neutral-400">· {data.hero.name}</span>
+            <span className="text-xs text-neutral-400">· {data.hero.name} (Data Science Student)</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-neutral-800 hover:bg-neutral-700 text-white rounded transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-violet-600 hover:bg-violet-500 text-white rounded transition-colors"
               title="Print or Save as PDF"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -80,7 +76,7 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
 
             <button
               onClick={handleDownloadMarkdown}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-neutral-800 hover:bg-neutral-700 text-white rounded transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-neutral-800 hover:bg-neutral-700 text-neutral-200 rounded transition-colors"
               title="Download Markdown Version"
             >
               <Download className="w-3.5 h-3.5" />
@@ -104,7 +100,7 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
               {data.hero.name}
             </h1>
-            <p className="text-sm font-medium text-neutral-600 mt-1">
+            <p className="text-sm font-semibold text-neutral-700 mt-1">
               {data.hero.headline}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-neutral-600 mt-3">
@@ -127,16 +123,16 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
               {data.education.map((edu) => (
                 <div key={edu.id}>
                   <div className="flex justify-between items-baseline text-xs sm:text-sm font-bold text-neutral-900">
-                    <span>{edu.institution}</span>
+                    <span>{edu.degree}</span>
                     <span className="font-normal text-neutral-600 text-xs">{edu.duration}</span>
                   </div>
                   <div className="flex justify-between items-baseline text-xs text-neutral-700">
-                    <span>{edu.degree}</span>
+                    <span>{edu.institution}</span>
                     {edu.score && <span className="font-semibold">{edu.score}</span>}
                   </div>
                   {edu.coursework && (
                     <p className="text-xs text-neutral-600 mt-1">
-                      <span className="font-medium text-neutral-700">Relevant Coursework:</span>{' '}
+                      <span className="font-medium text-neutral-700">Core Coursework:</span>{' '}
                       {edu.coursework.join(', ')}
                     </p>
                   )}
@@ -148,28 +144,24 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
           {/* Technical Skills */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
-              Technical Skills
+              Skills & Foundations
             </h2>
             <div className="space-y-1.5 text-xs text-neutral-800">
               <p>
-                <span className="font-bold text-neutral-900">Languages:</span>{' '}
-                {data.skills.languages.join(', ')}
+                <span className="font-bold text-neutral-900">Programming:</span>{' '}
+                {data.skills.programming.join(', ')}
               </p>
               <p>
-                <span className="font-bold text-neutral-900">Frameworks & Web:</span>{' '}
-                {data.skills.frameworks.join(', ')}
+                <span className="font-bold text-neutral-900">Core:</span>{' '}
+                {data.skills.core.join(', ')}
               </p>
               <p>
-                <span className="font-bold text-neutral-900">AI / Machine Learning:</span>{' '}
-                {data.skills.aiMl.join(', ')}
-              </p>
-              <p>
-                <span className="font-bold text-neutral-900">Databases:</span>{' '}
-                {data.skills.databases.join(', ')}
-              </p>
-              <p>
-                <span className="font-bold text-neutral-900">Tools & Platforms:</span>{' '}
+                <span className="font-bold text-neutral-900">Tools:</span>{' '}
                 {data.skills.tools.join(', ')}
+              </p>
+              <p>
+                <span className="font-bold text-neutral-900">Currently Exploring:</span>{' '}
+                {data.skills.currentlyExploring.join(', ')}
               </p>
             </div>
           </div>
@@ -177,7 +169,7 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
           {/* Projects */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
-              Projects
+              Projects & Academic Work
             </h2>
             <div className="space-y-4">
               {data.projects.map((proj) => (
@@ -185,7 +177,7 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
                   <div className="flex justify-between items-baseline font-bold text-neutral-900 text-sm">
                     <span>{proj.name}</span>
                     <span className="font-normal text-neutral-500 text-xs">
-                      {proj.technologies.slice(0, 3).join(', ')}
+                      {proj.technologies.join(', ')}
                     </span>
                   </div>
                   <p className="text-neutral-700 mt-0.5">{proj.purpose}</p>
@@ -199,10 +191,10 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             </div>
           </div>
 
-          {/* Experience */}
+          {/* Activities & Engagement */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
-              Experience
+              Activities & Engagement
             </h2>
             <div className="space-y-4">
               {data.experience.map((exp) => (
@@ -223,33 +215,18 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             </div>
           </div>
 
-          {/* Certifications & Achievements */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-1">
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-2">
-                Certifications
-              </h2>
-              <ul className="space-y-1 text-xs text-neutral-700">
-                {data.certifications.map((c) => (
-                  <li key={c.id}>
-                    <span className="font-semibold text-neutral-900">{c.name}</span> — {c.issuer} ({c.date})
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-2">
-                Achievements
-              </h2>
-              <ul className="space-y-1 text-xs text-neutral-700">
-                {data.achievements.map((a) => (
-                  <li key={a.id}>
-                    <span className="font-semibold text-neutral-900">{a.title}</span>: {a.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Achievements & Activities */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-2">
+              Events, Hackathons & Speaking
+            </h2>
+            <ul className="space-y-1.5 text-xs text-neutral-700">
+              {data.achievements.map((a) => (
+                <li key={a.id}>
+                  <span className="font-semibold text-neutral-900">{a.title}</span>: {a.description}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

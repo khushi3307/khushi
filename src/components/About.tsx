@@ -1,6 +1,6 @@
 import React from 'react';
 import { PortfolioData } from '../data/portfolioData';
-import { CheckCircle2, BookOpen, Sparkles, Terminal } from 'lucide-react';
+import { BookOpen, Terminal, Sparkles, Compass } from 'lucide-react';
 
 interface AboutProps {
   data: PortfolioData['about'];
@@ -9,48 +9,53 @@ interface AboutProps {
 
 export const About: React.FC<AboutProps> = ({ data, name }) => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-neutral-50 border-b border-neutral-200">
+    <section id="about" className="py-16 md:py-24 bg-[#0e1017] border-b border-neutral-800/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-2xl mb-12">
-          <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">
-            01. Background
+          <p className="text-xs font-semibold uppercase tracking-wider text-violet-400 mb-2 flex items-center gap-1.5">
+            <span>01. Academic & Personal Profile</span>
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             About Me
           </h2>
-          <div className="h-1 w-12 bg-neutral-900 mt-3 rounded-full"></div>
+          <div className="h-1 w-12 bg-violet-500 mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Main Summary Narrative */}
-          <div className="lg:col-span-7 space-y-5 text-neutral-700 leading-relaxed text-base sm:text-lg">
-            {data.summary.map((para, idx) => (
-              <p key={idx} className="text-neutral-600">
-                {para}
-              </p>
-            ))}
+          <div className="lg:col-span-7 space-y-5 text-neutral-300 leading-relaxed text-base sm:text-lg">
+            <p className="text-neutral-200 font-medium">
+              I am an undergraduate B.Tech Computer Science Engineering student specializing in Data Science.
+            </p>
+            <p className="text-neutral-300">
+              I am currently building my foundations in programming, data structures, data science, and problem solving.
+            </p>
+            <p className="text-neutral-300">
+              I enjoy learning through projects, technical events, hackathons, and public speaking.
+            </p>
           </div>
 
-          {/* Key Academic & Technical Focus */}
+          {/* Key Academic & Learning Interests */}
           <div className="lg:col-span-5">
-            <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-neutral-700" />
-                Key Focus & Highlights
+            <div className="bg-[#12141d] border border-neutral-800 hover:border-violet-500/40 rounded-xl p-6 shadow-md transition-all space-y-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2">
+                <Compass className="w-4 h-4 text-violet-400" />
+                Current Areas of Focus
               </h3>
+
               <ul className="space-y-3">
-                {data.highlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-neutral-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 mt-2 shrink-0" />
-                    <span>{highlight}</span>
+                {data.interests.map((interest, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm text-neutral-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-2 shrink-0" />
+                    <span>{interest}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-                <span>Undergraduate Focus</span>
-                <span className="font-semibold text-neutral-700">B.Tech CSE</span>
+              <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
+                <span>Degree Track</span>
+                <span className="font-semibold text-violet-300">B.Tech CSE (Data Science)</span>
               </div>
             </div>
           </div>

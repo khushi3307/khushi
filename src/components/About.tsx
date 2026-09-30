@@ -25,15 +25,14 @@ export const About: React.FC<AboutProps> = ({ data, name }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Main Summary Narrative */}
           <div className="lg:col-span-7 space-y-5 text-neutral-300 leading-relaxed text-base sm:text-lg">
-            <p className="text-neutral-200 font-medium">
-              I am an undergraduate B.Tech Computer Science Engineering student specializing in Data Science.
-            </p>
-            <p className="text-neutral-300">
-              I am currently building my foundations in programming, data structures, data science, and problem solving.
-            </p>
-            <p className="text-neutral-300">
-              I enjoy learning through projects, technical events, hackathons, and public speaking.
-            </p>
+            {data.summary.map((para, pIdx) => (
+              <p
+                key={pIdx}
+                className={pIdx === 0 ? "text-neutral-200 font-medium" : "text-neutral-300"}
+              >
+                {para}
+              </p>
+            ))}
           </div>
 
           {/* Key Academic & Learning Interests */}

@@ -282,16 +282,34 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-neutral-400 mb-1">Core Foundations</label>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Computer Science</label>
                     <input
                       type="text"
-                      value={formData.skills.core.join(', ')}
+                      value={(formData.skills.computerScience || []).join(', ')}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
                           skills: {
                             ...formData.skills,
-                            core: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
+                            computerScience: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
+                          },
+                        })
+                      }
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">Data & Productivity</label>
+                    <input
+                      type="text"
+                      value={(formData.skills.dataAndProductivity || []).join(', ')}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          skills: {
+                            ...formData.skills,
+                            dataAndProductivity: e.target.value.split(',').map((s) => s.trim()).filter(Boolean),
                           },
                         })
                       }

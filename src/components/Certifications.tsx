@@ -1,6 +1,6 @@
 import React from 'react';
 import { Certification } from '../data/portfolioData';
-import { Award, Calendar } from 'lucide-react';
+import { Award, Calendar, ExternalLink } from 'lucide-react';
 
 interface CertificationsProps {
   certifications: Certification[];
@@ -43,6 +43,20 @@ export const Certifications: React.FC<CertificationsProps> = ({ certifications }
                 <p className="text-xs font-medium text-neutral-400 mb-4">
                   {cert.issuer}
                 </p>
+
+                {cert.credentialUrl && (
+                  <div className="pt-3 border-t border-neutral-800">
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-300 hover:text-white transition-colors"
+                    >
+                      <span>Verification Link</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}

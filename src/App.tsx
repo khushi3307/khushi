@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { initialPortfolioData, PortfolioData } from './data/portfolioData';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -19,7 +19,7 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { DataEditorModal } from './components/DataEditorModal';
 
-const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v4';
+const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v7';
 
 export default function App() {
   const [data, setData] = useState<PortfolioData>(() => {
@@ -36,6 +36,22 @@ export default function App() {
 
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [isEditorModalOpen, setIsEditorModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Secret shortcut (Ctrl+Shift+E) or query param (?edit=true) keeps admin editing accessible
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'e') {
+        setIsEditorModalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    if (window.location.search.includes('edit=true')) {
+      setIsEditorModalOpen(true);
+    }
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleSaveData = (newData: PortfolioData) => {
     setData(newData);

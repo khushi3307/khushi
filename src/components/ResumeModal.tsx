@@ -27,20 +27,24 @@ ${data.about.summary.join('\n\n')}
 ## Education
 ${data.education.map(e => `* **${e.degree}** - ${e.institution} (${e.duration})${e.score ? ` - ${e.score}` : ''}\n  Key Focus: ${e.coursework?.join(', ') || 'N/A'}`).join('\n')}
 
+## Certification
+${data.certifications.map(c => `* **${c.name}** - ${c.issuer} (${c.date})${c.credentialUrl ? `\n  Verification: ${c.credentialUrl}` : ''}`).join('\n')}
+
 ## Technical Foundations & Skills
 * **Programming:** ${data.skills.programming.join(', ')}
-* **Core Foundations:** ${data.skills.core.join(', ')}
+* **Computer Science:** ${(data.skills.computerScience || []).join(', ')}
+* **Data & Productivity:** ${(data.skills.dataAndProductivity || []).join(', ')}
 * **Tools:** ${data.skills.tools.join(', ')}
 * **Currently Exploring:** ${data.skills.currentlyExploring.join(', ')}
 
-## Projects & Academic Work
-${data.projects.map(p => `### ${p.name}\n${p.purpose}\n* Tech: ${p.technologies.join(', ')}\n* Key Points:\n${p.features.map(f => `  - ${f}`).join('\n')}\n* Link: ${p.githubUrl || 'In Progress'}`).join('\n\n')}
+## Projects & Hands-On Work
+${data.projects.map(p => `### ${p.name}${p.subtitle ? ` — ${p.subtitle}` : ''}\n${p.purpose}\n* Tech: ${p.technologies.join(', ')}\n* Key Points:\n${p.features.map(f => `  - ${f}`).join('\n')}${p.liveDemoUrl ? `\n* Live: ${p.liveDemoUrl}` : ''}${p.githubUrl ? `\n* Code: ${p.githubUrl}` : ''}`).join('\n\n')}
 
-## Activities & Experience
-${data.experience.map(e => `### ${e.role} - ${e.organization} (${e.duration})\n${e.responsibilities.map(r => `* ${r}`).join('\n')}`).join('\n\n')}
+## Experience & Activities
+${data.experience.map(e => `### ${e.role}${e.organization ? ` - ${e.organization}` : ''}${e.duration ? ` (${e.duration})` : ''}\n${e.responsibilities.map(r => `* ${r}`).join('\n')}`).join('\n\n')}
 
-## Activities & Presentations
-${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''})`).join('\n')}
+## Achievements / Learning
+${data.achievements.map(a => `* **${a.title}**: ${a.description}${a.date ? ` (${a.date})` : ''}`).join('\n')}
 `;
 
     const blob = new Blob([mdContent], { type: 'text/markdown' });
@@ -141,6 +145,31 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             </div>
           </div>
 
+          {/* Certification */}
+          {data.certifications && data.certifications.length > 0 && (
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
+                Certification
+              </h2>
+              <div className="space-y-2">
+                {data.certifications.map((cert) => (
+                  <div key={cert.id} className="text-xs">
+                    <div className="flex justify-between items-baseline font-bold text-neutral-900 text-sm">
+                      <span>{cert.name}</span>
+                      <span className="font-normal text-neutral-600 text-xs">{cert.date}</span>
+                    </div>
+                    <div className="text-neutral-700">
+                      <span>{cert.issuer}</span>
+                      {cert.credentialUrl && (
+                        <span className="text-neutral-500 ml-2">· Verified Credential</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Technical Skills */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
@@ -151,10 +180,18 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
                 <span className="font-bold text-neutral-900">Programming:</span>{' '}
                 {data.skills.programming.join(', ')}
               </p>
-              <p>
-                <span className="font-bold text-neutral-900">Core:</span>{' '}
-                {data.skills.core.join(', ')}
-              </p>
+              {data.skills.computerScience && (
+                <p>
+                  <span className="font-bold text-neutral-900">Computer Science:</span>{' '}
+                  {data.skills.computerScience.join(', ')}
+                </p>
+              )}
+              {data.skills.dataAndProductivity && (
+                <p>
+                  <span className="font-bold text-neutral-900">Data & Productivity:</span>{' '}
+                  {data.skills.dataAndProductivity.join(', ')}
+                </p>
+              )}
               <p>
                 <span className="font-bold text-neutral-900">Tools:</span>{' '}
                 {data.skills.tools.join(', ')}
@@ -169,13 +206,20 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
           {/* Projects */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
-              Projects & Academic Work
+              Projects & Hands-On Work
             </h2>
             <div className="space-y-4">
               {data.projects.map((proj) => (
                 <div key={proj.id} className="text-xs">
                   <div className="flex justify-between items-baseline font-bold text-neutral-900 text-sm">
-                    <span>{proj.name}</span>
+                    <span>
+                      {proj.name}
+                      {proj.subtitle && (
+                        <span className="font-normal text-neutral-600 text-xs ml-1.5">
+                          · {proj.subtitle}
+                        </span>
+                      )}
+                    </span>
                     <span className="font-normal text-neutral-500 text-xs">
                       {proj.technologies.join(', ')}
                     </span>
@@ -191,19 +235,21 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             </div>
           </div>
 
-          {/* Activities & Engagement */}
+          {/* Experience & Activities */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-3">
-              Activities & Engagement
+              Experience & Activities
             </h2>
             <div className="space-y-4">
               {data.experience.map((exp) => (
                 <div key={exp.id} className="text-xs">
                   <div className="flex justify-between items-baseline font-bold text-neutral-900 text-sm">
                     <span>
-                      {exp.role} · <span className="font-normal">{exp.organization}</span>
+                      {exp.role}{exp.organization ? ` · ${exp.organization}` : ''}
                     </span>
-                    <span className="font-normal text-neutral-500 text-xs">{exp.duration}</span>
+                    {exp.duration && (
+                      <span className="font-normal text-neutral-500 text-xs">{exp.duration}</span>
+                    )}
                   </div>
                   <ul className="list-disc list-inside mt-1.5 text-neutral-600 space-y-0.5">
                     {exp.responsibilities.map((resp, rIdx) => (
@@ -215,10 +261,10 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
             </div>
           </div>
 
-          {/* Achievements & Activities */}
+          {/* Achievements / Learning */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-neutral-800 border-b border-neutral-300 pb-1 mb-2">
-              Events, Hackathons & Speaking
+              Achievements / Learning
             </h2>
             <ul className="space-y-1.5 text-xs text-neutral-700">
               {data.achievements.map((a) => (

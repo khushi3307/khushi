@@ -49,18 +49,20 @@ export const Footer: React.FC<FooterProps> = ({ hero, onOpenResume, onOpenEditor
             >
               Resume
             </button>
-            <button
-              onClick={onOpenEditor}
-              className="hover:text-violet-300 transition-colors"
-            >
-              Edit Data
-            </button>
+            {typeof window !== 'undefined' && window.location.search.includes('admin=true') && (
+              <button
+                onClick={onOpenEditor}
+                className="hover:text-violet-300 transition-colors"
+              >
+                Edit Data
+              </button>
+            )}
           </div>
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-neutral-500">
-            © {new Date().getFullYear()} {hero.name} · B.Tech CSE (Data Science)
+            © 2026 {hero.name} · B.Tech CSE (Data Science)
           </p>
 
           <button

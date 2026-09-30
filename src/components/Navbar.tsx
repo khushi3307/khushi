@@ -62,14 +62,16 @@ export const Navbar: React.FC<NavbarProps> = ({ data, onOpenResume, onOpenEditor
 
         {/* Zone 3: 1-2 primary actions */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            onClick={onOpenEditor}
-            title="Edit Portfolio Data"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-neutral-300 hover:text-white bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-violet-500/40 rounded-md transition-colors whitespace-nowrap"
-          >
-            <Settings className="w-3.5 h-3.5 text-violet-400" />
-            <span className="hidden lg:inline">Edit Data</span>
-          </button>
+          {typeof window !== 'undefined' && window.location.search.includes('admin=true') && (
+            <button
+              onClick={onOpenEditor}
+              title="Edit Portfolio Data"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-neutral-300 hover:text-white bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-violet-500/40 rounded-md transition-colors whitespace-nowrap"
+            >
+              <Settings className="w-3.5 h-3.5 text-violet-400" />
+              <span className="hidden lg:inline">Edit Data</span>
+            </button>
+          )}
 
           <button
             onClick={onOpenResume}
@@ -91,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ data, onOpenResume, onOpenEditor
 
       {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0f1118] border-b border-neutral-800 px-4 pt-3 pb-6 space-y-3">
+        <div className="md:hidden bg-[#0f111a] border-b border-neutral-800 px-4 pt-3 pb-6 space-y-3">
           <div className="grid grid-cols-2 gap-2 text-sm">
             {navLinks.map((link) => (
               <a
@@ -115,15 +117,17 @@ export const Navbar: React.FC<NavbarProps> = ({ data, onOpenResume, onOpenEditor
               <FileText className="w-3.5 h-3.5" />
               View Resume
             </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenEditor();
-              }}
-              className="px-3 py-2 text-xs font-semibold text-neutral-300 bg-neutral-900 border border-neutral-800 rounded-md"
-            >
-              Edit Info
-            </button>
+            {typeof window !== 'undefined' && window.location.search.includes('admin=true') && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenEditor();
+                }}
+                className="px-3 py-2 text-xs font-semibold text-neutral-300 bg-neutral-900 border border-neutral-800 rounded-md"
+              >
+                Edit Info
+              </button>
+            )}
           </div>
         </div>
       )}

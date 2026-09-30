@@ -3,6 +3,8 @@ import profilePhotoImg from '../assets/images/regenerated_image_1790778735928.jp
 export interface Project {
   id: string;
   name: string;
+  subtitle?: string;
+  label?: string;
   purpose: string;
   technologies: string[];
   features: string[];
@@ -13,9 +15,9 @@ export interface Project {
 
 export interface Experience {
   id: string;
-  organization: string;
+  organization?: string;
   role: string;
-  duration: string;
+  duration?: string;
   responsibilities: string[];
 }
 
@@ -45,7 +47,8 @@ export interface Achievement {
 
 export interface SkillsGroup {
   programming: string[];
-  core: string[];
+  computerScience: string[];
+  dataAndProductivity: string[];
   tools: string[];
   currentlyExploring: string[];
 }
@@ -87,9 +90,9 @@ export const initialPortfolioData: PortfolioData = {
   },
   about: {
     summary: [
-      "I am an undergraduate B.Tech Computer Science Engineering student specializing in Data Science.",
-      "Currently building my foundations in programming, data structures, data science, and problem solving.",
-      "I enjoy learning through projects, technical events, hackathons, and public speaking.",
+      "I’m a B.Tech student specializing in Computer Science and Engineering with a focus on Data Science. I enjoy understanding how technology works, solving problems through programming, and turning what I learn into practical projects.",
+      "My current foundation includes C, Python, Data Structures and Algorithms, and core data science concepts. I’m also exploring SQL, data analytics, machine learning, and generative AI.",
+      "Beyond academics, I enjoy technical events, hackathons, public speaking, and collaborative projects. I’m always looking for opportunities to learn, build, and take on challenges that push me beyond the classroom.",
     ],
     interests: [
       "Data Structures & Core Algorithms",
@@ -100,125 +103,132 @@ export const initialPortfolioData: PortfolioData = {
   },
   skills: {
     programming: ["C", "Python"],
-    core: ["Data Structures & Algorithms", "Data Science Fundamentals"],
-    tools: ["Git", "GitHub", "Microsoft Excel", "Microsoft Office"],
+    computerScience: ["Data Structures & Algorithms", "Problem Solving"],
+    dataAndProductivity: ["Data Science Fundamentals", "Microsoft Excel", "Microsoft Office"],
+    tools: ["Git", "GitHub"],
     currentlyExploring: ["SQL", "Data Analytics", "Machine Learning", "Generative AI"],
   },
   projects: [
     {
       id: "project-1",
-      name: "Algorithmic Problem Solving & Data Structures",
+      name: "Proofa — Student Growth Passport",
       purpose:
-        "Collection of algorithmic implementations, practice problems, and core data structure routines built in C and Python.",
-      technologies: ["C", "Python", "Data Structures", "Algorithms"],
+        "A web-based platform designed to help students present and organize their skills, projects, learning progress, and achievements through a digital student profile.",
+      technologies: ["Web Platform", "Digital Student Profile"],
       features: [
-        "Structured implementations of arrays, linked lists, stacks, queues, and tree traversals",
-        "Algorithmic efficiency analysis focusing on time and space complexity",
-        "Documented code solutions for problem-solving challenges",
+        "Digital student profile presentation",
+        "Organization of skills, projects, and learning progress",
+        "Showcase of student achievements and development milestones",
       ],
-      githubUrl: "https://github.com/khushi3307",
+      liveDemoUrl: "https://proofa.pages.dev/",
       isPlaceholder: false,
     },
     {
       id: "project-2",
-      name: "Data Science Fundamentals & Analysis (In Progress)",
+      name: "TaskFlow",
+      subtitle: "Collaborative Portfolio & Git Workflow Project",
+      label: "Team project · 3 members",
       purpose:
-        "Exploratory scripts and foundational data exercises investigating tabular data processing and statistical summaries.",
-      technologies: ["Python", "Data Science Fundamentals", "Microsoft Excel"],
-      features: [
-        "Data cleaning and dataset structuring using Python",
-        "Descriptive statistics and summary metric calculations",
-        "Worksheet modeling and tabular data organization in Excel",
+        "A three-member collaborative portfolio project built to practice real-world Git and GitHub workflows. The project involved working with branches, commits, pull requests, code reviews, and merge conflict resolution while developing the portfolio together.",
+      technologies: [
+        "Git",
+        "GitHub",
+        "Team Collaboration",
+        "Version Control",
+        "Web Development",
       ],
-      githubUrl: "https://github.com/khushi3307",
+      features: [
+        "Branch-based development",
+        "Commits and pushes",
+        "Pull requests",
+        "Code reviews",
+        "Merge conflict resolution",
+      ],
       isPlaceholder: false,
     },
     {
       id: "project-3",
-      name: "Data Analytics & SQL Project (Upcoming Placeholder)",
+      name: "Personal Portfolio Website",
       purpose:
-        "Upcoming exploration project applying relational queries, analytical schemas, and dashboard visualizations.",
-      technologies: ["SQL", "Data Analytics", "Exploring"],
+        "A personal portfolio created to showcase my academic journey, skills, projects, technical interests, and ongoing learning.",
+      technologies: ["Google AI Studio", "GitHub", "Vercel"],
       features: [
-        "Relational query design and data aggregation workflows",
-        "Insight extraction on real-world sample datasets",
-        "Detailed project documentation to be uploaded upon completion",
+        "Showcase of academic journey, technical foundation, and hands-on projects",
+        "Highlights technical interests and ongoing learning",
+        "Interactive resume viewer and markdown export",
       ],
-      isPlaceholder: true,
-    },
-    {
-      id: "project-4",
-      name: "Machine Learning Exploration (Upcoming Placeholder)",
-      purpose:
-        "Future capstone applying predictive analytics and foundational ML models to domain-specific datasets.",
-      technologies: ["Machine Learning", "Python", "Exploring"],
-      features: [
-        "Baseline model training and evaluation metrics",
-        "Documentation of experiments and key findings",
-        "Code repository link will be updated as work progresses",
-      ],
-      isPlaceholder: true,
+      liveDemoUrl: "https://khushi-portfolio-6u8i.vercel.app/",
+      githubUrl: "https://github.com/khushi3307",
+      isPlaceholder: false,
     },
   ],
   experience: [
     {
-      id: "exp-1",
-      organization: "College Technical Club & Student Chapter",
-      role: "Student Member & Technical Participant",
-      duration: "2024 – Present",
+      id: "act-1",
+      role: "Technical Events & Hackathons",
       responsibilities: [
-        "Active participant in technical club sessions, hackathons, and peer coding workshops.",
-        "Contributed to organizing technical events, seminar coordination, and session logistics.",
-        "Engaged in technical presentations and public speaking sessions sharing learnings on technology topics.",
+        "Participated in student technical activities, collaborative problem-solving sessions, and hackathon-related activities.",
+      ],
+    },
+    {
+      id: "act-2",
+      role: "Public Speaking & Presentations",
+      responsibilities: [
+        "Participated in technical presentations, public-speaking activities, and student events.",
+      ],
+    },
+    {
+      id: "act-3",
+      role: "Model United Nations",
+      responsibilities: [
+        "Participated in Model United Nations activities involving research, speech preparation, structured argumentation, and formal discussion.",
       ],
     },
   ],
   education: [
     {
       id: "edu-1",
-      degree: "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
-      institution: "Specialization in Data Science",
-      duration: "Pursuing Undergraduate Degree",
+      degree: "Bachelor of Technology (B.Tech) — Computer Science & Engineering (Data Science)",
+      institution: "Nalla Narasimha Reddy Education Society’s Group of Institutions",
+      duration: "2025 – 2029",
       coursework: [
+        "Programming",
         "Data Structures & Algorithms",
-        "Problem Solving in C & Python",
-        "Data Science Fundamentals",
-        "Mathematics for Computing",
+        "Data Science",
+        "Mathematics",
+        "Computer Organization",
+        "Digital Logic",
       ],
-    },
-    {
-      id: "edu-2",
-      degree: "Higher Secondary Education (Science stream)",
-      institution: "Senior Secondary School",
-      duration: "Completed",
     },
   ],
   certifications: [
     {
       id: "cert-1",
-      name: "Foundational Programming & Problem Solving",
-      issuer: "Technical Learning & Coursework",
-      date: "Ongoing",
+      name: "AI Fundamentals: Foundations for Understanding AI",
+      issuer: "IBM SkillsBuild",
+      date: "Completed · 2026",
+      credentialUrl:
+        "https://www.linkedin.com/posts/khushi-vishwakarma-a11470384_ibm-ibmskillsbuild-artificialintelligence-activity-7508513490400362496-c7TR",
     },
   ],
   achievements: [
     {
       id: "ach-1",
-      title: "Hackathon Participation & Team Collaboration",
-      description: "Participated in student hackathons working on ideation, problem definition, and initial solution prototyping.",
-      date: "Recent",
+      title: "Hackathon Participation",
+      description:
+        "Participated in student hackathon activities involving problem identification, ideation, teamwork, and solution development.",
     },
     {
       id: "ach-2",
-      title: "Technical Presentations & Public Speaking",
-      description: "Delivered student talks and presentations on foundational computer science and emerging technology topics.",
-      date: "Ongoing",
+      title: "Public Speaking",
+      description:
+        "Participated in college-level speaking and presentation activities, including technical and formal events.",
     },
     {
       id: "ach-3",
-      title: "Algorithmic Practice & Problem Solving",
-      description: "Regularly practicing core programming and algorithmic problems to strengthen computer science foundations.",
-      date: "Ongoing",
+      title: "Continuous Technical Learning",
+      description:
+        "Building foundations in programming, data structures, data science, Git/GitHub, and emerging AI tools through coursework and independent learning.",
     },
   ],
 };

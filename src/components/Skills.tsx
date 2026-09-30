@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkillsGroup } from '../data/portfolioData';
-import { Code2, BookOpen, Wrench, Sparkles, Compass } from 'lucide-react';
+import { Code2, BookOpen, Wrench, Sparkles, FileSpreadsheet } from 'lucide-react';
 
 interface SkillsProps {
   skills: SkillsGroup;
@@ -16,18 +16,25 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
       description: 'Languages used for core algorithmic problem solving and programming practice.',
     },
     {
-      id: 'core',
-      title: 'Core Foundations',
+      id: 'computerScience',
+      title: 'Computer Science',
       icon: BookOpen,
-      items: skills.core,
-      description: 'Foundational concepts in algorithms, data structuring, and data science principles.',
+      items: skills.computerScience || [],
+      description: 'Foundational concepts in algorithms, data structures, and problem solving.',
+    },
+    {
+      id: 'dataAndProductivity',
+      title: 'Data & Productivity',
+      icon: FileSpreadsheet,
+      items: skills.dataAndProductivity || [],
+      description: 'Foundations in data science principles and analytical productivity tools.',
     },
     {
       id: 'tools',
       title: 'Tools',
       icon: Wrench,
       items: skills.tools,
-      description: 'Version control, collaborative platforms, and productivity software in active use.',
+      description: 'Version control and collaboration platforms in active use.',
     },
   ];
 
@@ -51,7 +58,7 @@ export const Skills: React.FC<SkillsProps> = ({ skills }) => {
             <span>Technologies Currently in Use</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {currentSkillCategories.map((category) => {
               const Icon = category.icon;
               return (

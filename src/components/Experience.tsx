@@ -16,7 +16,7 @@ export const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
             04. Extracurricular & Practical Background
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-            Activities & Experience
+            Experience & Activities
           </h2>
           <div className="h-1 w-12 bg-violet-500 mt-3 rounded-full"></div>
         </div>
@@ -33,22 +33,23 @@ export const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
                   <h3 className="text-xl font-bold text-white">
                     {exp.role}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm text-neutral-400 mt-1">
-                    <Building2 className="w-4 h-4 text-violet-400" />
-                    <span className="font-medium text-neutral-300">{exp.organization}</span>
-                  </div>
+                  {exp.organization && (
+                    <div className="flex items-center gap-2 text-sm text-neutral-400 mt-1">
+                      <Building2 className="w-4 h-4 text-violet-400" />
+                      <span className="font-medium text-neutral-300">{exp.organization}</span>
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-400">
-                  <Calendar className="w-3.5 h-3.5 text-violet-400" />
-                  <span>{exp.duration}</span>
-                </div>
+                {exp.duration && (
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-400">
+                    <Calendar className="w-3.5 h-3.5 text-violet-400" />
+                    <span>{exp.duration}</span>
+                  </div>
+                )}
               </div>
 
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                  Responsibilities & Active Engagement
-                </h4>
                 <ul className="space-y-2.5 text-sm text-neutral-300">
                   {exp.responsibilities.map((resp, rIdx) => (
                     <li key={rIdx} className="flex items-start gap-2.5 leading-relaxed">

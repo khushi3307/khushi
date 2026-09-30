@@ -21,7 +21,7 @@ export const Education: React.FC<EducationProps> = ({ education }) => {
           <div className="h-1 w-12 bg-violet-500 mt-3 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className={`grid grid-cols-1 ${education.length > 1 ? 'md:grid-cols-2' : 'max-w-3xl'} gap-8`}>
           {education.map((item) => (
             <div
               key={item.id}

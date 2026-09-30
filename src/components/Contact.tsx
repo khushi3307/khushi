@@ -96,18 +96,7 @@ export const Contact: React.FC<ContactProps> = ({ hero }) => {
               <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
                 Profiles
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                {hero.linkedin && (
-                  <a
-                    href={hero.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 p-2.5 bg-[#12141d] hover:bg-neutral-800 border border-neutral-800 rounded-lg text-xs font-medium text-neutral-300 hover:text-violet-300 transition-colors"
-                  >
-                    <span>LinkedIn</span>
-                    <ExternalLink className="w-3 h-3 text-neutral-500" />
-                  </a>
-                )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {hero.github && (
                   <a
                     href={hero.github}
@@ -119,14 +108,14 @@ export const Contact: React.FC<ContactProps> = ({ hero }) => {
                     <ExternalLink className="w-3 h-3 text-neutral-500" />
                   </a>
                 )}
-                {hero.kaggle && (
+                {hero.linkedin && (
                   <a
-                    href={hero.kaggle}
+                    href={hero.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-1.5 p-2.5 bg-[#12141d] hover:bg-neutral-800 border border-neutral-800 rounded-lg text-xs font-medium text-neutral-300 hover:text-violet-300 transition-colors"
                   >
-                    <span>Kaggle</span>
+                    <span>LinkedIn</span>
                     <ExternalLink className="w-3 h-3 text-neutral-500" />
                   </a>
                 )}

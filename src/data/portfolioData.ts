@@ -1,3 +1,5 @@
+import profilePhotoImg from '../assets/images/regenerated_image_1790778735928.jpg';
+
 export interface Project {
   id: string;
   name: string;
@@ -57,7 +59,6 @@ export interface PortfolioData {
     email: string;
     linkedin: string;
     github: string;
-    kaggle: string;
     profilePhoto: string;
   };
   about: {
@@ -80,10 +81,9 @@ export const initialPortfolioData: PortfolioData = {
       "Exploring data, technology, and ideas that turn into real-world solutions.",
     location: "India",
     email: "vkhushi.3307@gmail.com",
-    linkedin: "https://www.linkedin.com/in/khushi-v-developer",
-    github: "https://github.com/vkhushi3307",
-    kaggle: "https://www.kaggle.com/khushiv3307",
-    profilePhoto: "/src/assets/images/profile_student_developer_1790672627492.jpg",
+    linkedin: "https://www.linkedin.com/in/khushi-vishwakarma-a11470384",
+    github: "https://github.com/khushi3307",
+    profilePhoto: profilePhotoImg,
   },
   about: {
     summary: [
@@ -116,7 +116,7 @@ export const initialPortfolioData: PortfolioData = {
         "Algorithmic efficiency analysis focusing on time and space complexity",
         "Documented code solutions for problem-solving challenges",
       ],
-      githubUrl: "https://github.com/vkhushi3307",
+      githubUrl: "https://github.com/khushi3307",
       isPlaceholder: false,
     },
     {
@@ -130,7 +130,7 @@ export const initialPortfolioData: PortfolioData = {
         "Descriptive statistics and summary metric calculations",
         "Worksheet modeling and tabular data organization in Excel",
       ],
-      githubUrl: "https://github.com/vkhushi3307",
+      githubUrl: "https://github.com/khushi3307",
       isPlaceholder: false,
     },
     {

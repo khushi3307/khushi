@@ -211,6 +211,36 @@ export const DataEditorModal: React.FC<DataEditorModalProps> = ({
                       className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">GitHub URL</label>
+                    <input
+                      type="text"
+                      value={formData.hero.github}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          hero: { ...formData.hero, github: e.target.value },
+                        })
+                      }
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-neutral-400 mb-1">LinkedIn URL</label>
+                    <input
+                      type="text"
+                      value={formData.hero.linkedin}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          hero: { ...formData.hero, linkedin: e.target.value },
+                        })
+                      }
+                      className="w-full px-3 py-1.5 text-xs bg-[#0a0b10] border border-neutral-800 text-white rounded focus:ring-1 focus:ring-violet-500"
+                    />
+                  </div>
                 </div>
 
                 <div>

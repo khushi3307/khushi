@@ -19,7 +19,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, data 
     const mdContent = `# ${data.hero.name}
 ${data.hero.headline}
 Email: ${data.hero.email} | Location: ${data.hero.location}
-GitHub: ${data.hero.github} | LinkedIn: ${data.hero.linkedin} | Kaggle: ${data.hero.kaggle}
+GitHub: ${data.hero.github} | LinkedIn: ${data.hero.linkedin}
 
 ## About
 ${data.about.summary.join('\n\n')}
@@ -108,9 +108,9 @@ ${data.achievements.map(a => `* **${a.title}**: ${a.description} (${a.date || ''
               <span aria-hidden="true">·</span>
               <span>{data.hero.location}</span>
               <span aria-hidden="true">·</span>
-              <span>github.com/vkhushi3307</span>
+              <span>github.com/khushi3307</span>
               <span aria-hidden="true">·</span>
-              <span>linkedin.com/in/khushi-v-developer</span>
+              <span>linkedin.com/in/khushi-vishwakarma-a11470384</span>
             </div>
           </div>
 

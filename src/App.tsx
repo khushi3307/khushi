@@ -19,7 +19,7 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { DataEditorModal } from './components/DataEditorModal';
 
-const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v2';
+const LOCAL_STORAGE_KEY = 'khushi_portfolio_data_v4';
 
 export default function App() {
   const [data, setData] = useState<PortfolioData>(() => {

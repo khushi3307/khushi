@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ data, onOpenResume }) => {
               </a>
             </div>
 
-            {/* Social Links Row (LinkedIn, GitHub, Kaggle) */}
+            {/* Social Links Row (GitHub, LinkedIn) */}
             <div className="pt-4 border-t border-neutral-800/80 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
               <span className="text-xs uppercase tracking-wider font-semibold text-neutral-500">
                 Connect
@@ -122,19 +122,6 @@ export const Hero: React.FC<HeroProps> = ({ data, onOpenResume }) => {
                   <ExternalLink className="w-3 h-3 text-neutral-500" />
                 </a>
               )}
-
-              {data.kaggle && (
-                <a
-                  href={data.kaggle}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 font-medium text-neutral-300 hover:text-violet-300 transition-colors"
-                >
-                  <span className="font-mono font-bold text-xs bg-neutral-800 text-violet-300 px-1 rounded border border-neutral-700">K</span>
-                  <span>Kaggle</span>
-                  <ExternalLink className="w-3 h-3 text-neutral-500" />
-                </a>
-              )}
             </div>
           </div>
 
@@ -149,7 +136,7 @@ export const Hero: React.FC<HeroProps> = ({ data, onOpenResume }) => {
                     alt={`${data.name} headshot`}
                     referrerPolicy="no-referrer"
                     onError={() => setImageError(true)}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-900 to-[#161722] text-neutral-400 p-6 text-center">

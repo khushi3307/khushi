@@ -11,7 +11,7 @@ A clean, responsive, and professional personal developer portfolio website desig
    - Student introduction & status indicator
    - High-fidelity portrait photo with resilient CSS fallback
    - Interactive Resume Viewer button
-   - Direct external links to LinkedIn, GitHub, and Kaggle
+   - Direct external links to LinkedIn and GitHub
 2. **About Me**
    - Concise academic and technical summary based on undergraduate Computer Science studies
    - Key highlights and core areas of focus
@@ -43,12 +43,12 @@ A clean, responsive, and professional personal developer portfolio website desig
 8. **Achievements & Activities**
    - Hackathon finalist recognition
    - Problem solving milestones (LeetCode, GeeksforGeeks)
-   - Kaggle data analysis contributions
+   - Student technical event participation
 9. **Contact Section**
    - Direct email (`vkhushi.3307@gmail.com`)
    - One-click copy email button with visual confirmation
    - Interactive message form with validation and mailto client launch
-   - Quick links to LinkedIn, GitHub, and Kaggle
+   - Quick links to LinkedIn and GitHub
 10. **Resume Modal & Data Customizer**
     - Built-in ATS-friendly printable resume viewer (`Ctrl+P` / PDF ready)
     - In-app "Edit Data" modal for live customization or pasting custom JSON without touching code
